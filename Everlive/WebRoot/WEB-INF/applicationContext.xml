@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- 定义数据源的信息 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="jdbcUrl">
+			<value>jdbc:mysql://192.168.7.175:3306/everlive2</value>
+		</property>
+		<property name="user">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>zhaojun123</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>80</value>
+		</property>
+		<property name="minPoolSize">
+			<value>1</value>
+		</property>
+		<property name="initialPoolSize">
+			<value>1</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>20</value>
+		</property>
+	</bean>
+
+	<!--定义Hibernate的SessionFactory -->
+	<!-- SessionFactory使用的数据源为上面的数据源 -->
+	<!-- 指定了Hibernate的映射文件和配置信息 mappingResources-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/everlive/user/bo/</value>  
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="show_sql">true</prop>
+				<prop key="hibernate.jdbc.batch_size">20</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseDao" class="com.everlive.user.dao.UserDaoImpl">  
+        <property name="sessionFactory">  
+            <ref bean="sessionFactory" />  
+        </property>  
+    </bean>
+  
+  	<bean id="judgeStarDao" class="com.everlive.user.dao.JudgeStarDaoImpl"></bean>
+  	
+    <!--用户注册业务逻辑类 -->  
+    <bean id="userManagerService" class="com.everlive.user.service.UserManagerServiceImpl">  
+        <property name="dao">  
+            <ref bean="baseDao" />  
+        </property>  
+    </bean>  
+  
+  	<bean id="JudgeStarService" class="com.everlive.user.service.JudgeStarServiceImpl">  
+        <property name="judgeStarDao">  
+            <ref bean="judgeStarDao" />  
+        </property>  
+    </bean>  
+  
+    <!-- 用户注册的Action -->  
+    <bean id="regAction" class="com.everlive.user.action.RegisterAction">  
+        <property name="userManagerService">  
+            <ref bean="userManagerService" />  
+        </property>  
+    </bean>
+
+	<!-- more bean definitions go here -->
+	<!-- 工作的bean -->  
+    <bean id="myJob1" class="com.everlive.task.WebScheduledTimerTask" >
+    	<property name="userManagerService" ref="userManagerService" />
+    	<property name="JudgeStarService" ref="JudgeStarService" />
+    </bean>
+    
+    <!-- job的配置开始 -->  
+    <bean id="myJobDetail1"  
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject">  
+            <ref bean="myJob1" />  
+        </property>  
+        <property name="targetMethod">  
+            <value>exportFUandUPByPlan</value>  
+        </property>  
+    </bean>  
+    <!-- job的配置结束 -->  
+    
+    <bean id="myJobTrigger1"  
+        class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail">  
+            <ref bean="myJobDetail1" />  
+        </property>  
+        <property name="cronExpression">  
+            <value>35 32 18 ? * Wed</value>
+        </property>  
+    </bean>
+	
+	<!-- 启动触发器的配置开始 -->  
+    <bean name="startQuertz" lazy-init="false" autowire="no"  
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="triggers">  
+            <list>  
+                <ref bean="myJobTrigger1" />  
+            </list>  
+        </property>  
+    </bean>
+    
+
+</beans>

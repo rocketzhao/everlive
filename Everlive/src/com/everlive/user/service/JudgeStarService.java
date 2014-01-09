@@ -1,0 +1,1 @@
+package com.everlive.user.service;public interface JudgeStarService {		public void getStartList(Object obj);	    public void getSuspend1List(Object obj);        public void getSuspend2List(Object obj);        public void getSuspend3List(Object obj);	        public void addTaskLog(String function);}

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-1-5 15:12:47 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.everlive.user.bo.ElUser" table="el_user" catalog="everlive2">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="email" type="string">
+            <column name="email" length="45" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" />
+        </property>
+        <property name="password2" type="string">
+            <column name="password2" length="45" not-null="true">
+                <comment>&#201;&#217;&#193;&#203;&#215;&#238;&#186;&#243;&#210;&#187;&#206;&#187;&#181;&#196;&#195;&#220;&#194;&#235;</comment>
+            </column>
+        </property>
+        <property name="avatar" type="string">
+            <column name="avatar" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="32" not-null="true" />
+        </property>
+        <property name="displayName" type="string">
+            <column name="display_name" length="32" />
+        </property>
+        <property name="realName" type="string">
+            <column name="real_name" length="32" />
+        </property>
+        <property name="gender" type="boolean">
+            <column name="gender" not-null="true" />
+        </property>
+        <property name="birthdate" type="date">
+            <column name="birthdate" length="10" not-null="true" />
+        </property>
+        <property name="level" type="int">
+            <column name="level" not-null="true" />
+        </property>
+        <property name="vipDeadline" type="timestamp">
+            <column name="vip_deadline" length="19" not-null="true" />
+        </property>
+        <property name="starId" type="int">
+            <column name="star_id" not-null="true" />
+        </property>
+        <property name="status" type="int">
+            <column name="status" not-null="true" />
+        </property>
+        <property name="active" type="boolean">
+            <column name="active" not-null="true" />
+        </property>
+        <property name="place" type="string">
+            <column name="place" length="65535" />
+        </property>
+        <property name="school" type="string">
+            <column name="school" length="65535" not-null="true" />
+        </property>
+        <property name="intro" type="string">
+            <column name="intro" length="65535" not-null="true" />
+        </property>
+        <property name="tags" type="string">
+            <column name="tags" length="65535" not-null="true" />
+        </property>
+        <property name="career" type="string">
+            <column name="career" length="65535" not-null="true" />
+        </property>
+        <property name="dataUsed" type="int">
+            <column name="data_used" not-null="true" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

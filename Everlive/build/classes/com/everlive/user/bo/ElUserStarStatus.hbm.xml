@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-1-5 15:12:47 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.everlive.user.bo.ElUserStarStatus" table="el_user_star_status" catalog="everlive2">
+        <composite-id name="id" class="com.everlive.user.bo.ElUserStarStatusId">
+            <key-property name="userId" type="int">
+                <column name="userId" />
+            </key-property>
+            <key-property name="status" type="string">
+                <column name="status" length="10" />
+            </key-property>
+            <key-property name="logdate" type="date">
+                <column name="logdate" length="10" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

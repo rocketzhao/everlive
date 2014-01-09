@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-1-5 15:12:47 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.everlive.user.bo.ElPostEntrustment" table="el_post_entrustment" catalog="everlive2">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="active" type="int">
+            <column name="active" not-null="true" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date" length="19" not-null="true" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="update_date" length="19" not-null="true" />
+        </property>
+        <property name="userId" type="int">
+            <column name="user_id" not-null="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" length="65535" />
+        </property>
+        <property name="file" type="string">
+            <column name="file" />
+        </property>
+        <property name="tags" type="string">
+            <column name="tags" not-null="true" />
+        </property>
+        <property name="mode" type="int">
+            <column name="mode" not-null="true" />
+        </property>
+        <property name="type" type="int">
+            <column name="type" not-null="true" />
+        </property>
+        <property name="receiver" type="string">
+            <column name="receiver" length="65535" not-null="true" />
+        </property>
+        <property name="receiverId" type="int">
+            <column name="receiver_id" not-null="true" />
+        </property>
+        <property name="deadline" type="date">
+            <column name="deadline" length="10" />
+        </property>
+        <property name="imme" type="boolean">
+            <column name="imme" not-null="true" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" not-null="true" />
+        </property>
+        <property name="postId" type="int">
+            <column name="post_id" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

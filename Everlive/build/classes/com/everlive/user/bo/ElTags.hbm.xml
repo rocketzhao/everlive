@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-1-5 15:12:47 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.everlive.user.bo.ElTags" table="el_tags" catalog="everlive2">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="userId" type="int">
+            <column name="user_id" not-null="true" />
+        </property>
+        <property name="count" type="int">
+            <column name="count" not-null="true" />
+        </property>
+        <property name="value" type="string">
+            <column name="value" not-null="true" />
+        </property>
+        <property name="order" type="int">
+            <column name="order" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

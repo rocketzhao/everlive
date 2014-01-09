@@ -1,0 +1,1 @@
+package com.everlive.framework.config;public class Config {	public static final String url = "http://test.everlive.me/";	public static final String index = "index.php/";	public static final String dress = "email/feedback";		}

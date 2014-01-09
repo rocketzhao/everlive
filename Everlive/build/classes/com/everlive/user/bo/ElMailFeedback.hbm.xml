@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-1-5 15:12:47 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.everlive.user.bo.ElMailFeedback" table="el_mail_feedback" catalog="everlive2">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="userId" type="int">
+            <column name="userId" not-null="true" />
+        </property>
+        <property name="feedbackEmail" type="string">
+            <column name="feedback_email" length="100" not-null="true" />
+        </property>
+        <property name="feedbackValue" type="string">
+            <column name="feedback_value" length="10" not-null="true" />
+        </property>
+        <property name="cliendDate" type="date">
+            <column name="cliend_date" length="10" not-null="true" />
+        </property>
+        <property name="serverDate" type="date">
+            <column name="server_date" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

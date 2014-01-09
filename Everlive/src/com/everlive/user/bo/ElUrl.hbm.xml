@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-1-5 15:12:47 by Hibernate Tools 3.2.2.GA -->
+<hibernate-mapping>
+    <class name="com.everlive.user.bo.ElUrl" table="el_url" catalog="everlive2">
+        <composite-id name="id" class="com.everlive.user.bo.ElUrlId">
+            <key-property name="id" type="int">
+                <column name="id" />
+            </key-property>
+            <key-property name="shortUrl" type="string">
+                <column name="short_url" length="32" />
+            </key-property>
+            <key-property name="url" type="string">
+                <column name="url" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

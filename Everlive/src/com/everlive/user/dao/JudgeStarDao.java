@@ -1,0 +1,1 @@
+package com.everlive.user.dao;import com.everlive.user.bo.UserForm;public interface JudgeStarDao {	public void getStartList(Object obj);	    public void getSuspend1List(UserForm userForm);        public void getSuspend2List(UserForm userForm);        public void getSuspend3List(UserForm userForm);	}
